@@ -1,0 +1,109 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+    <title>Pokes: UserDash</title>
+  </head>
+  <style>
+  *{
+    margin: auto;
+  }
+  .count{
+    margin-left: 20px;
+    margin-top: 10px;
+
+  }
+  .hello{
+    margin-left: 20px;
+    margin-top: 10px;
+
+  }
+  .header{
+    position: absolute;
+    top: 10px;
+    left: 980px;
+  }
+  .pokeheader{
+    margin-left: 20px;
+  }
+  #peopletopoke {
+    border: 2px solid black;
+    display: inline-block;
+    margin-left: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    overflow: scroll;
+  }
+
+.box{
+    border: 2px solid black;
+    display: inline-block;
+    margin-left: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 30px;
+    overflow: scroll;
+
+  }
+  td{
+    border-right: 2px solid black;
+    padding: 10px;
+  }
+  button{
+    font-size: 12px;
+
+  }
+  button a{
+    color: black;
+    text-decoration: none;
+  }
+  th{
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    background-color: lightgray;
+    padding: 5px;
+  }
+  .end1, .end, .end2, .end3 {
+    border-right: none;
+  }
+  </style>
+  <body>
+    <h2 class="hello">Hello {{session['name']}}!</h2>
+
+    <p class="count"> {{totalofpokes[0]['totalofpokes']}} people have poked you!</p>
+
+    <div class="header">
+      <p><a href="/logout">Logout</a></p>
+    </div>
+    <div id="main">
+        <fieldset class="box">
+          {% for pokes_from in poke_me %}
+          <p>{{pokes_from['name']}} poked you {{pokes_from['poke_id']}} times. </p>
+          {% endfor %}
+        </fieldset>
+
+        <p class="pokeheader">People you may want to poke:</p>
+        <table id="peopletopoke">
+          <thead>
+            <th>Name</th>
+            <th>Alias</th>
+            <th>Email Address</th>
+            <th>Poke History</th>
+            <th class="end">Action</th>
+          </thead>
+          <tbody>
+            {% for topoke in poke_friends %}
+              <tr>
+                <td>{{topoke['name']}}</td>
+                <td>{{topoke['alias']}}</td>
+                <td>{{topoke['email']}}</td>
+                <td>{{topoke['poke_id']}}</td>
+                <td class="end1">
+                  <button><a href="/pokebutton/{{topoke['id']}}">Poke!</a></button></td>
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+      </div>
+  </body>
+</html>

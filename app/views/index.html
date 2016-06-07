@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+    <title>Login Page: Pokes</title>
+  </head>
+  <body>
+    <h1>Welcome!</h1>
+  <div id="member">
+    <h3>Log In:</h3>
+    {% with message = get_flashed_messages() %}
+        {% if message %}
+        {% for text in message %}
+              <p> {{text}} </p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+      <form action="/login" method="POST">
+               <label>Email:</label>
+               <input type="text" name="email">
+               <br>
+               <label>Password:</label>
+               <input type="password" name="password">
+               <br>
+               <input type="submit" value="Login">
+         </form>
+
+    <div id="newuser">
+        <h3>Or Register:</h3>
+       <form action="/register" method="POST">
+      <label>Name:</label> <input type="text" name="name"><br>
+      <label>Alias:</label> <input type="text" name="alias"><br>
+      <label>Email Address:</label> <input type="text" name="email"><br>
+      <label>Password:</label> <input type="password" name="password"><br>
+      <label>Confirm Password:</label> <input type="password" name="confirm_password"><br>
+      <label>Date of Birth:</label><input type="date" name="dob"><br>
+      <input type="submit" value="Register">
+     </form>
+   </div>
+ </div>
+  </body>
+</html>
